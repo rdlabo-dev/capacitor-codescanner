@@ -60,7 +60,7 @@
     "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^2.0.0",
     "eslint": "^8.57.1",
-    "np": "^10.2.0",
+    "np": "^12.0.1",
     "prettier": "^3.6.2",
     "prettier-plugin-java": "^2.7.7",
     "rimraf": "^6.1.0",
@@ -70,6 +70,10 @@
   },
   "peerDependencies": {
     "@capacitor/core": ">=8.0.0"
+  },
+  "overrides": {
+    "tmp": "^0.2.7",
+    "uuid": "^14.0.0"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
