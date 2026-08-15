@@ -4,6 +4,8 @@ Capacitor Plugin for Code Scanner
 
 This is a barcode reader created for specific use cases. Unlike other Capacitor barcode reader plugins, this plugin opens a modal and performs scanning within it. Therefore, there is no need to manipulate web assets.
 
+**Documentation:** [Read the full documentation](https://docs.rdlabo.dev/projects/capacitor-codescanner)
+
 ## Install
 
 ```bash
