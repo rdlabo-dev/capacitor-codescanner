@@ -23,10 +23,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rdlabo-team/capacitor-codescanner.git"
+    "url": "git+https://github.com/rdlabo-dev/capacitor-codescanner.git"
   },
   "bugs": {
-    "url": "https://github.com/rdlabo-team/capacitor-codescanner/issues"
+    "url": "https://github.com/rdlabo-dev/capacitor-codescanner/issues"
   },
   "keywords": [
     "capacitor",
