@@ -50,7 +50,9 @@ class CodeScannerPlugin : Plugin() {
             return
         }
 
-        val codeTypes = call.getArray("CodeTypes", JSArray.from(arrayOf("qr", "code39", "ean13")))!!;
+        val codeTypes = call.getArray("CodeTypes")
+            ?: call.getArray("metadataObjectTypes")
+            ?: JSArray.from(arrayOf("qr", "code39", "ean13"))
         val detectionWidth: Float = call.getFloat("detectionWidth") ?: 0.4f
         val detectionHeight: Float = call.getFloat("detectionHeight") ?: 1f
 

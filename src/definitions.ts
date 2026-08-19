@@ -29,7 +29,16 @@ export type MetadataObjectTypes =
   | 'salientObject';
 
 export interface ScannerOption {
+  /**
+   * Width of the detection area relative to the available width (0–1).
+   * Default is 0.4.
+   */
   detectionWidth?: number;
+
+  /**
+   * Height of the detection area relative to the detection width.
+   * Default is 1 on iOS; 0.15–0.2 is typical on Android.
+   */
   detectionHeight?: number;
 
   /**
@@ -46,12 +55,12 @@ export interface ScannerOption {
   /**
    * Specify the types of codes to recognize (default: ["qr", "code39", "ean13"])
    */
-  metadataObjectTypes?: MetadataObjectTypes[];
+  CodeTypes?: MetadataObjectTypes[];
 
   /**
    * Enable multi scan mode (default: false)
    */
-  isMulti: boolean;
+  isMulti?: boolean;
 
   /**
    * Enable auto light when environment is dark (default: true)

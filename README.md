@@ -135,15 +135,15 @@ addListener(eventName: 'CodeScannerCatchEvent', listenerFunc: (event: { code: st
 
 #### ScannerOption
 
-| Prop                      | Type                               | Description                                                                                                                     |
-| ------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **`detectionWidth`**      | <code>number</code>                |                                                                                                                                 |
-| **`detectionHeight`**     | <code>number</code>                |                                                                                                                                 |
-| **`enableCloseButton`**   | <code>boolean</code>               | Enable close button on the top left of the scanning area (default: true)                                                        |
-| **`sheetScreenRatio`**    | <code>number</code>                | Specify the ratio of the scanning area (sheet modal size) to the screen size. Default is 0.9 for android, 1(pageSheet) for iOS. |
-| **`metadataObjectTypes`** | <code>MetadataObjectTypes[]</code> | Specify the types of codes to recognize (default: ["qr", "code39", "ean13"])                                                    |
-| **`isMulti`**             | <code>boolean</code>               | Enable multi scan mode (default: false)                                                                                         |
-| **`enableAutoLight`**     | <code>boolean</code>               | Enable auto light when environment is dark (default: true)                                                                      |
+| Prop                    | Type                               | Description                                                                                                                     |
+| ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **`detectionWidth`**    | <code>number</code>                | Width of the detection area relative to the available width (0–1). Default is 0.4.                                              |
+| **`detectionHeight`**   | <code>number</code>                | Height of the detection area relative to the detection width. Default is 1 on iOS; 0.15–0.2 is typical on Android.              |
+| **`enableCloseButton`** | <code>boolean</code>               | Enable close button on the top left of the scanning area (default: true)                                                        |
+| **`sheetScreenRatio`**  | <code>number</code>                | Specify the ratio of the scanning area (sheet modal size) to the screen size. Default is 0.9 for android, 1(pageSheet) for iOS. |
+| **`CodeTypes`**         | <code>MetadataObjectTypes[]</code> | Specify the types of codes to recognize (default: ["qr", "code39", "ean13"])                                                    |
+| **`isMulti`**           | <code>boolean</code>               | Enable multi scan mode (default: false)                                                                                         |
+| **`enableAutoLight`**   | <code>boolean</code>               | Enable auto light when environment is dark (default: true)                                                                      |
 
 
 #### PluginListenerHandle

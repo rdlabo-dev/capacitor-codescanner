@@ -16,6 +16,7 @@ const scanQRCode = async () => {
     detectionWidth: 0.6,
     detectionHeight: 0.15,
     isMulti: false,
+    CodeTypes: ['qr'],
   });
 };
 
@@ -28,15 +29,12 @@ const scanMultipleCodes = async () => {
     detectionWidth: 0.8,
     detectionHeight: 0.2,
     isMulti: true,
+    CodeTypes: ['qr', 'code39', 'ean13', 'code128'],
   });
 };
 ```
 
 `isMulti: true` keeps the modal open so you can scan many codes. Option fields are on the [API](/docs/api#scanneroption) page.
-
-> **Known limitation in v8.0.3:** the public TypeScript interface exposes `metadataObjectTypes`,
-> but the native implementations still read the legacy `CodeTypes` key. Because the legacy key is
-> not part of `ScannerOption`, omit code-type filtering with this release.
 
 ## addListener
 
