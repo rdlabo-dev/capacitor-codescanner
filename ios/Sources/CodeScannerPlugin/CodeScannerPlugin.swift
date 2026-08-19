@@ -104,7 +104,9 @@ public class CodeScannerPlugin: CAPPlugin, AVCaptureMetadataOutputObjectsDelegat
                     metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
 
                     // コードの認識を設定
-                    let ObjectTypes = call.getArray("CodeTypes", String.self) ?? ["qr", "code39", "ean13"]
+                    let ObjectTypes = call.getArray("CodeTypes", String.self)
+                        ?? call.getArray("metadataObjectTypes", String.self)
+                        ?? ["qr", "code39", "ean13"]
                     var metadataObjectTypes = [AVMetadataObject.ObjectType]()
 
                     for type in ObjectTypes {
