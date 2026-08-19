@@ -91,10 +91,10 @@ Use this plugin when you want a ready-to-use scanning modal without building a c
 
 <docgen-index>
 
-- [`present(...)`](#present)
-- [`addListener('CodeScannerCatchEvent', ...)`](#addlistenercodescannercatchevent-)
-- [Interfaces](#interfaces)
-- [Type Aliases](#type-aliases)
+* [`present(...)`](#present)
+* [`addListener('CodeScannerCatchEvent', ...)`](#addlistenercodescannercatchevent-)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -111,7 +111,8 @@ present(scannerOption: ScannerOption) => Promise<void>
 | ------------------- | ------------------------------------------------------- |
 | **`scannerOption`** | <code><a href="#scanneroption">ScannerOption</a></code> |
 
----
+--------------------
+
 
 ### addListener('CodeScannerCatchEvent', ...)
 
@@ -126,21 +127,24 @@ addListener(eventName: 'CodeScannerCatchEvent', listenerFunc: (event: { code: st
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
----
+--------------------
+
 
 ### Interfaces
 
+
 #### ScannerOption
 
-| Prop                    | Type                               | Description                                                                                                                     |
-| ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **`detectionWidth`**    | <code>number</code>                | Width of the detection area relative to the available width (0–1). Default is 0.4.                                              |
-| **`detectionHeight`**   | <code>number</code>                | Height of the detection area relative to the detection width. Default is 1 on iOS and 0.15–0.2 is typical on Android.           |
-| **`enableCloseButton`** | <code>boolean</code>               | Enable close button on the top left of the scanning area (default: true)                                                        |
-| **`sheetScreenRatio`**  | <code>number</code>                | Specify the ratio of the scanning area (sheet modal size) to the screen size. Default is 0.9 for android, 1(pageSheet) for iOS. |
-| **`CodeTypes`**         | <code>MetadataObjectTypes[]</code> | Specify the types of codes to recognize (default: ["qr", "code39", "ean13"])                                                    |
-| **`isMulti`**           | <code>boolean</code>               | Enable multi scan mode (default: false)                                                                                         |
-| **`enableAutoLight`**   | <code>boolean</code>               | Enable auto light when environment is dark (default: true)                                                                      |
+| Prop                      | Type                               | Description                                                                                                                     |
+| ------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **`detectionWidth`**      | <code>number</code>                |                                                                                                                                 |
+| **`detectionHeight`**     | <code>number</code>                |                                                                                                                                 |
+| **`enableCloseButton`**   | <code>boolean</code>               | Enable close button on the top left of the scanning area (default: true)                                                        |
+| **`sheetScreenRatio`**    | <code>number</code>                | Specify the ratio of the scanning area (sheet modal size) to the screen size. Default is 0.9 for android, 1(pageSheet) for iOS. |
+| **`metadataObjectTypes`** | <code>MetadataObjectTypes[]</code> | Specify the types of codes to recognize (default: ["qr", "code39", "ean13"])                                                    |
+| **`isMulti`**             | <code>boolean</code>               | Enable multi scan mode (default: false)                                                                                         |
+| **`enableAutoLight`**     | <code>boolean</code>               | Enable auto light when environment is dark (default: true)                                                                      |
+
 
 #### PluginListenerHandle
 
@@ -148,14 +152,13 @@ addListener(eventName: 'CodeScannerCatchEvent', listenerFunc: (event: { code: st
 | ------------ | ----------------------------------------- |
 | **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
 
+
 ### Type Aliases
+
 
 #### MetadataObjectTypes
 
-<code>
-  'aztec' | 'code128' | 'code39' | 'code39Mod43' | 'code93' | 'dataMatrix' | 'ean13' | 'ean8' | 'face' |
-  'interleaved2of5' | 'itf14' | 'pdf417' | 'qr' | 'upce' | 'catBody' | 'dogBody' | 'humanBody' | 'salientObject'
-</code>
+<code>'aztec' | 'code128' | 'code39' | 'code39Mod43' | 'code93' | 'dataMatrix' | 'ean13' | 'ean8' | 'face' | 'interleaved2of5' | 'itf14' | 'pdf417' | 'qr' | 'upce' | 'catBody' | 'dogBody' | 'humanBody' | 'salientObject'</code>
 
 </docgen-api>
 
