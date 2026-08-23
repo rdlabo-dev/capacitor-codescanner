@@ -29,6 +29,7 @@
   "bugs": {
     "url": "https://github.com/rdlabo-dev/capacitor-codescanner/issues"
   },
+  "homepage": "https://docs.rdlabo.dev/projects/capacitor-codescanner",
   "keywords": [
     "capacitor",
     "plugin",
