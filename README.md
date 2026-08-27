@@ -24,7 +24,7 @@ npx cap sync
 
 ## Usage
 
-See [CodeScanner](./docs/code-scanner.md) to present the modal and receive scanned codes.
+See [CodeScanner](https://docs.rdlabo.dev/projects/capacitor-codescanner/docs/code-scanner) to present the modal and receive scanned codes.
 
 <!-- rdlabo-docs-omit -->
 Register a listener before calling `present`. The listener receives each scanned code.
