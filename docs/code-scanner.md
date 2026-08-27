@@ -34,7 +34,13 @@ const scanMultipleCodes = async () => {
 };
 ```
 
-`isMulti: true` keeps the modal open so you can scan many codes. Option fields are on the [API](/docs/api#scanneroption) page.
+`isMulti: true` keeps the modal open so you can scan many codes.
+
+<!-- !::present:: -->
+
+<!-- !::ScannerOption:: -->
+
+<!-- !::MetadataObjectTypes:: -->
 
 ## addListener
 
@@ -48,4 +54,6 @@ const handle = await CodeScanner.addListener('CodeScannerCatchEvent', (event) =>
 await handle.remove();
 ```
 
-The payload is `{ code: string }`. Signatures are on the [API](/docs/api) page.
+<!-- !::addListener.CodeScannerCatchEvent:: -->
+
+<!-- !::PluginListenerHandle:: -->
