@@ -5,9 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- /rdlabo-docs-omit -->
 
-Barcode scanner for Capacitor that opens a native modal.
+Scan QR codes and barcodes with a native Capacitor modal.
 
-Unlike camera-preview based scanners, this plugin runs the camera inside a modal. You do not need to manage the camera view in your web assets. The plugin supports multiple barcode types and continuous multi-scan mode.
+The camera runs inside the modal, so you do not manage a camera view in your web assets. Use a single scan or continuous multi-scan; each catch delivers `event.code`.
 
 <!-- rdlabo-docs-omit -->
 **Full documentation:** [https://docs.rdlabo.dev/projects/capacitor-codescanner](https://docs.rdlabo.dev/projects/capacitor-codescanner)
@@ -22,44 +22,43 @@ npm install @rdlabo/capacitor-codescanner
 npx cap sync
 ```
 
+### Camera permission (required before first scan)
+
+The plugin uses the device camera. On iOS, add a usage description to your app `Info.plist` (for example `ios/App/App/Info.plist`):
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>This app needs camera access to scan QR codes and barcodes.</string>
+```
+
+Android declares `android.permission.CAMERA` in the plugin manifest; the OS may still prompt at runtime when you present the scanner. After editing native config, sync and rebuild the native app (`npx cap sync`, then open Xcode / Android Studio or your usual Capacitor native build).
+
 ## Usage
 
-See [CodeScanner](./docs/code-scanner.md) to present the modal and receive scanned codes.
+See [CodeScanner](./docs/code-scanner.md). Start the scan from a user action such as a button, after install and camera setup.
 
 <!-- rdlabo-docs-omit -->
-Register a listener before calling `present`. The listener receives each scanned code.
+Register a listener, present the modal from a button handler, then remove the handle after `present` settles (including when the user closes the modal without a scan):
 
 ```ts
 import { CodeScanner } from '@rdlabo/capacitor-codescanner';
+import type { PluginListenerHandle } from '@capacitor/core';
 
 const scanQRCode = async () => {
-  await CodeScanner.addListener('CodeScannerCatchEvent', (event) => {
-    console.log('Scanned code:', event.code);
-  });
+  let handle: PluginListenerHandle | undefined;
+  try {
+    handle = await CodeScanner.addListener('CodeScannerCatchEvent', (event) => {
+      console.log('Scanned code:', event.code);
+    });
 
-  await CodeScanner.present({
-    detectionWidth: 0.6,
-    detectionHeight: 0.15,
-    isMulti: false,
-    CodeTypes: ['qr'],
-  });
-};
-```
-
-To scan multiple barcode types continuously, enable multi-scan mode:
-
-```ts
-const scanMultipleCodes = async () => {
-  await CodeScanner.addListener('CodeScannerCatchEvent', (event) => {
-    console.log('Scanned code:', event.code);
-  });
-
-  await CodeScanner.present({
-    detectionWidth: 0.8,
-    detectionHeight: 0.2,
-    isMulti: true,
-    CodeTypes: ['qr', 'code39', 'ean13', 'code128'],
-  });
+    await CodeScanner.present({
+      detectionWidth: 0.6,
+      detectionHeight: 0.15,
+      isMulti: false,
+    });
+  } finally {
+    await handle?.remove();
+  }
 };
 ```
 
@@ -71,7 +70,6 @@ Use this plugin when you want a ready-to-use scanning modal without building a c
 
 - Scanning QR codes or barcodes on receipts, products, or tickets.
 - Collecting multiple codes in one session with `isMulti: true`.
-- Avoiding camera permission and preview wiring in your web code.
 
 ## Features
 

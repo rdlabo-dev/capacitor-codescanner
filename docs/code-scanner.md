@@ -1,51 +1,47 @@
 # CodeScanner
 
-`CodeScanner` opens a native scanner modal and delivers scanned values. Call this after [Installation](/docs/readme#installation). Register `addListener` before `present` so the first catch is not missed.
+`CodeScanner` opens a native scanner modal and delivers scanned values. Call this after [Installation](/docs/readme#installation) and camera permission setup. Start from a user action such as a button. Register `addListener` before `present` so the first catch is not missed. `present` resolves when the modal closes (after a scan or when the user cancels). Remove the listener handle afterward so rescans do not stack listeners.
 
 ## present
 
+Scan one known QR code and confirm `event.code` in the listener, then close the modal (or let a single-scan close it):
+
 ```typescript
 import { CodeScanner } from '@rdlabo/capacitor-codescanner';
+import type { PluginListenerHandle } from '@capacitor/core';
 
 const scanQRCode = async () => {
-  await CodeScanner.addListener('CodeScannerCatchEvent', (event) => {
-    console.log('Scanned code:', event.code);
-  });
+  let handle: PluginListenerHandle | undefined;
+  try {
+    handle = await CodeScanner.addListener('CodeScannerCatchEvent', (event) => {
+      console.log('Scanned code:', event.code);
+    });
 
-  await CodeScanner.present({
-    detectionWidth: 0.6,
-    detectionHeight: 0.15,
-    isMulti: false,
-    CodeTypes: ['qr'],
-  });
-};
-
-const scanMultipleCodes = async () => {
-  await CodeScanner.addListener('CodeScannerCatchEvent', (event) => {
-    console.log('Scanned code:', event.code);
-  });
-
-  await CodeScanner.present({
-    detectionWidth: 0.8,
-    detectionHeight: 0.2,
-    isMulti: true,
-    CodeTypes: ['qr', 'code39', 'ean13', 'code128'],
-  });
+    await CodeScanner.present({
+      detectionWidth: 0.6,
+      detectionHeight: 0.15,
+      isMulti: false,
+    });
+  } finally {
+    await handle?.remove();
+  }
 };
 ```
 
-`isMulti: true` keeps the modal open so you can scan many codes. Option fields are on the [API](/docs/api#scanneroption) page.
-
-## addListener
+For continuous multi-scan, keep the same listen → present → remove flow and set `isMulti: true`. Do not call `addListener` again without removing the previous handle:
 
 ```typescript
-import { CodeScanner } from '@rdlabo/capacitor-codescanner';
-
-const handle = await CodeScanner.addListener('CodeScannerCatchEvent', (event) => {
-  console.log('Scanned code:', event.code);
+await CodeScanner.present({
+  detectionWidth: 0.8,
+  detectionHeight: 0.2,
+  isMulti: true,
 });
-
-await handle.remove();
 ```
 
-The payload is `{ code: string }`. Signatures are on the [API](/docs/api) page.
+`isMulti: true` keeps the modal open so you can scan many codes until the user closes it. Option fields are on the [API](/docs/api#scanneroption) page.
+
+## Filtering code types
+
+In version 8.0.3, the published TypeScript types expose `metadataObjectTypes` while the native implementation expects `CodeTypes`. For this version, use the defaults (`qr`, `code39`, `ean13`).
+
+The event payload is `{ code: string }`. See [API](/docs/api) for signatures.
